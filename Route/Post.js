@@ -85,7 +85,7 @@ route.put('/like/:id',async(req,res)=>{
           }else
           {
              await post.updateOne({$pull:{likes:req.body.userId}})
-             res.status(200).json({result:"Unliked"})
+             res.status(200).json({result:"Unliked"})    
           }
 
      }catch(err)
@@ -115,6 +115,17 @@ route.get('/getp/:id',async(req,res)=>{
     }catch(err)
     {
         res.status(500).json(err);
+    }
+})
+
+//get all the posts
+route.get('/all',async(req,res)=>{
+    try {
+        const all=await postSchemma.find();
+        res.status(200).send(all);
+        console.log("All post is "+all)
+    } catch (error) {
+        res.status(400).send(false);
     }
 })
 module.exports=route;

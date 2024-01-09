@@ -6,7 +6,8 @@ route.post('/register',async(req,res)=>{
     const user=new userModel({
         username:req.body.username,
         password:encPassword,
-        email:req.body.email
+        email:req.body.email,
+        profile:req.body.profile
     })
 
     try{
@@ -22,6 +23,7 @@ route.post('/register',async(req,res)=>{
 route.post('/login',async(req,res)=>{
              try {
                      const user=await userModel.findOne({username:req.body.username});
+                     console.log("requisted user is "+req.body)
 
                      if(!user)
                      {
@@ -31,6 +33,7 @@ route.post('/login',async(req,res)=>{
 
                     
                      const dPassword=cryptojs.AES.decrypt(user.password,"mdsa").toString(cryptojs.enc.Utf8);
+                     console.log(dPassword)
                      if(dPassword!=req.body.password)
                       {
                          res.status(400).json({result:"Wrong password"})
