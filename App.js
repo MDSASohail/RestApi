@@ -6,6 +6,8 @@ const helmet = require('helmet');
 const authRoute = require('./Route/Auth');
 const userRoute = require('./Route/User');
 const postRoute = require('./Route/Post');
+const ConversationRoute = require('./Route/Conversation');
+const MessageRoute = require('./Route/Message');
 const cors = require('cors');
 const multer = require('multer');
 const path=require('path');
@@ -29,6 +31,8 @@ app.use(helmet());
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/post', postRoute);
+app.use('/conversation',ConversationRoute);
+app.use('/message',MessageRoute);
 let namename=""
 
 
@@ -41,7 +45,7 @@ const storage = multer.diskStorage({
 
   filename: function (req, file, cb) {
     // Specify how each file should be named
-    namename=Date.now()+file.originalname;
+    namename=Date.now()+file.originalname; 
     
     cb(null, namename);
   },
