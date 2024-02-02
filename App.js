@@ -8,18 +8,18 @@ const userRoute = require('./Route/User');
 const postRoute = require('./Route/Post');
 const ConversationRoute = require('./Route/Conversation');
 const MessageRoute = require('./Route/Message');
-const cors = require('cors');
+// const cors = require('cors');
 const multer = require('multer');
 const path=require('path');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const corsOptions = {
-  origin: 'http://localhost:3000', // replace with your frontend's origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // enable credentials (cookies, authorization headers, etc.)
-  optionsSuccessStatus: 204,
-};
+// const corsOptions = {
+//   origin: 'http://localhost:3000', // replace with your frontend's origin
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // enable credentials (cookies, authorization headers, etc.)
+//   optionsSuccessStatus: 204,
+// };
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 dotenv.config();
 app.use('/Images',express.static("Public/Images"))
 mongoose
