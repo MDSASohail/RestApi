@@ -26,7 +26,8 @@ app.use((req, res, next) => {
 
 // app.use(cors(corsOptions));
 dotenv.config();
-app.use('/Images',express.static("Public/Images"))
+// app.use('/Images',express.static("Public/Images"))
+app.use('/Images', express.static(path.join(__dirname, 'Public/Images')));
 mongoose
   .connect(process.env.mongo_pass)
   .then(() => {
