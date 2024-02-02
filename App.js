@@ -26,6 +26,14 @@ mongoose
     console.log(err);
   });
 
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+  });
+
 app.use(morgan('common'));
 app.use(helmet());
 app.use('/auth', authRoute);
@@ -66,6 +74,11 @@ app.post('/upload',upload.single('file'),  (req, res) => {
       return res.status(500).send('File not uploaded');
     }
   });
+
+
+  app.get('/',(req,res)=>{
+    res.send("Server is working")
+  })
 
 app.listen(8000, () => {
   console.log('Server is started');

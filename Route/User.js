@@ -54,6 +54,8 @@ route.put('/update/:id',async(req,res)=>{
     res.status(500).json({result:"You are not allowed to update"})
 })
 
+
+
 //delete a user by finding username
 route.delete('/delete/:id',async(req,res)=>{
            if(req.body.userId===req.params.id || req.body.isAdmin)
