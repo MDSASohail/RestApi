@@ -84,9 +84,7 @@ app.get('/',(req,res)=>{
 })
 
 
-app.get('*',(req,res)=>{
-  res.send("Does not match any url")
-})
+
 
 app.listen(8000, () => {
   console.log('Server is started');
