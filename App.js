@@ -8,13 +8,28 @@ const userRoute = require('./Route/User');
 const postRoute = require('./Route/Post');
 const ConversationRoute = require('./Route/Conversation');
 const MessageRoute = require('./Route/Message');
-const cors = require('cors');
+// const cors = require('cors');
 const multer = require('multer');
 const path=require('path');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+// const corsOptions = {
+//   origin: 'http://localhost:3000', // replace with your frontend's origin
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // enable credentials (cookies, authorization headers, etc.)
+//   optionsSuccessStatus: 204,
+// };
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+  });
+
+// app.use(cors(corsOptions));
 dotenv.config();
 app.use('/Images',express.static("Public/Images"))
 mongoose
@@ -76,9 +91,17 @@ app.post('/upload',upload.single('file'),  (req, res) => {
   });
 
 
+<<<<<<< HEAD
   app.get('/',(req,res)=>{
     res.send("Server is working")
   })
+=======
+
+app.get('/',(req,res)=>{
+    res.send("Server is working")
+  })
+  
+>>>>>>> 9a8f63f8be80b026bdc946d80bc5815bcb01261a
 
 app.listen(8000, () => {
   console.log('Server is started');
