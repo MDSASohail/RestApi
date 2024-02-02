@@ -74,6 +74,13 @@ app.post('/upload',upload.single('file'),  (req, res) => {
     }
   });
 
+
+
+app.get('/',(req,res)=>{
+    res.send("Server is working")
+  })
+  
+
 app.listen(8000, () => {
   console.log('Server is started');
 });
