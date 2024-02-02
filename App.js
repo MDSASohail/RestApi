@@ -14,7 +14,14 @@ const path=require('path');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:3000', // replace with your frontend's origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // enable credentials (cookies, authorization headers, etc.)
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 dotenv.config();
 app.use('/Images',express.static("Public/Images"))
 mongoose
