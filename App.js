@@ -14,12 +14,7 @@ const path=require('path');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// const corsOptions = {
-//   origin: 'http://localhost:3000', // replace with your frontend's origin
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   credentials: true, // enable credentials (cookies, authorization headers, etc.)
-//   optionsSuccessStatus: 204,
-// };
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -41,13 +36,6 @@ mongoose
     console.log(err);
   });
 
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.header('Access-Control-Allow-Credentials', true);
-    next();
-  });
 
 app.use(morgan('common'));
 app.use(helmet());
@@ -91,17 +79,9 @@ app.post('/upload',upload.single('file'),  (req, res) => {
   });
 
 
-<<<<<<< HEAD
-  app.get('/',(req,res)=>{
-    res.send("Server is working")
-  })
-=======
-
 app.get('/',(req,res)=>{
-    res.send("Server is working")
-  })
-  
->>>>>>> 9a8f63f8be80b026bdc946d80bc5815bcb01261a
+  res.send("Working fine")
+})
 
 app.listen(8000, () => {
   console.log('Server is started');
